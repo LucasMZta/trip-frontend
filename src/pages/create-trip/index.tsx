@@ -30,19 +30,19 @@ export const CreateTripPage = () => {
    const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>();
 
    const destinationSchema = z.object({
-      destination: z.string().min(2, 'Preencha o seu destino.'),
+      destination: z.string().min(2, 'Your destiny is missing.'),
       starts_at: z.coerce.date().refine(date => typeof date !== 'string', {
-         message: 'A data deve ser preenchida.',
+         message: 'The date is missing.',
       }).refine(date => date >= today, {
-         message: 'A data inicial deverá ser a partir de hoje.',
+         message: 'Invalid trip start date. Its before or same current day.',
       }),
    })
    const emailSchema = z.object({
-      emailsToInvite: z.string().email('Formato de email inválido.')
+      emailsToInvite: z.string().email('E-mail format invalid.')
    })
    const confirmTripSchema = z.object({
-      ownerName: z.string().min(3, 'Preencha seu nome completo'),
-      ownerEmail: z.string().email('Formato de email inválido.')
+      ownerName: z.string().min(3, 'Your full name is missing.'),
+      ownerEmail: z.string().email('E-mail format invalid.')
    })
    const openGuestInput = () => {
       setErrors([]);
