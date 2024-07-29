@@ -33,11 +33,10 @@ export const CreateLinkModal = ({ closeModalCreateLink }: Props) => {
       } catch (error) {
          if (error instanceof AxiosError) {
             if (error.response) {
-               for (const i in error.response.data.errors) {
-                  if (error.response.data.errors.title) setErrorUrlTitle(error.response.data.errors.title)
+               if (error.response.data.errors.title) setErrorUrlTitle(error.response.data.errors.title)
 
-                  if (error.response.data.errors.url) setErrorUrlFormat(error.response.data.errors.url)
-               }
+               if (error.response.data.errors.url) setErrorUrlFormat(error.response.data.errors.url)
+
             }
          }
       }
