@@ -75,7 +75,6 @@ export const CreateTripPage = () => {
       e.preventDefault();
       setErrors([]);
       setAlertHasInvited(false);
-      console.log('From: ', eventStartAndEndDates?.from)
 
       const data = new FormData(e.currentTarget);
       const email = data.get('email')?.toString();

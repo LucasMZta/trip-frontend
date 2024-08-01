@@ -6,6 +6,7 @@ import { api } from "../../lib/axios";
 import { Modal } from "../../components/modal";
 import { z } from "zod";
 import { ErrorItem, getErrorFromZod } from "../../utils/getErrorFromZod";
+import { AxiosError } from "axios";
 
 interface Participant {
    id: string;
@@ -42,6 +43,7 @@ export const Guests = () => {
    const closeGuestModal = async () => {
       setIsCreateGuestModal(false);
       setAlertHasInvited(false);
+      setErrors([]);
 
       if (emailsToInvite.length > 0) {
          emailsToInvite.map(async (email) => {
@@ -61,12 +63,25 @@ export const Guests = () => {
          }
       }
 
-
    }
    const removeEmailFromInvite = (email: string) => {
       if (emailsToInvite) {
          const newEmailList = emailsToInvite.filter(invited => invited !== email);
          setEmailsToInvite(newEmailList);
+      }
+   }
+   const removeParticipant = async (participantId: string) => {
+
+      try {
+         await api.delete(`/participants/${participantId}/remove`)
+         window.location.reload();
+      } catch (error) {
+         if (error instanceof AxiosError) {
+            console.log(error.response?.data.message)
+            if (error.response?.data.message) {
+               setErrors([{ field: 'emailsToInvite', message: error.response.data.message }])
+            }
+         }
       }
    }
 
@@ -88,7 +103,7 @@ export const Guests = () => {
 
       if (!emailsToInvite) return
 
-      if (emailsToInvite.includes(schema.data.emailsToInvite)) {
+      if (emailsToInvite.includes(schema.data.emailsToInvite) || tripParticipants.filter((participant) => participant.email === schema.data.emailsToInvite).length > 0) {
          setAlertHasInvited(true);
          return
       }
@@ -143,7 +158,7 @@ export const Guests = () => {
                         tripParticipants.map((participant, key) => (
                            <div key={key} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
                               <span className='text-zinc-300'> {participant.email} </span>
-                              {/* <button type="button" onClick={() => removeEmailFromInvite(email)} > <X className='size-4 text-zinc-400' /> </button> */}
+                              <button type="button" onClick={() => removeParticipant(participant.id)} > <X className='size-4 text-zinc-400' /> </button>
                            </div>
                         ))
                      }
