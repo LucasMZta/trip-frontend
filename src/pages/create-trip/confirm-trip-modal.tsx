@@ -68,7 +68,7 @@ export const ConfirmTripModal = ({ closeConfirmTripModal, createTrip, setOwnerEm
                {errorOccursAt &&
                   <ShowError message={errorOccursAt} />
                }
-               <Button type="submit" variantColor="primary" size="full" >
+               <Button type="submit" variantColor="primary" size="full" disabled={isLoading} >
                   {isLoading ? 'Loading...' : 'Confirmar criação da viagem'}
                </Button>
             </form>

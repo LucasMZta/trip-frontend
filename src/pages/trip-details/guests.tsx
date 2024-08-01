@@ -46,6 +46,7 @@ export const Guests = () => {
       setErrors([]);
 
       if (emailsToInvite.length > 0) {
+         console.log('Emails: ', emailsToInvite);
          emailsToInvite.map(async (email) => {
             try {
                await api.post(`/trips/${tripId}/invites`, {
@@ -59,7 +60,7 @@ export const Guests = () => {
          })
          if (!postError) {
             setPostError(false)
-            window.location.reload();
+            // window.location.reload();
          }
       }
 
