@@ -12,13 +12,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/trips/:tripId",
-    element: <TripDetailsPage />,
-    errorElement: <ErrorPage />
+    element: <TripDetailsPage />
   },
   {
     path: "/participants/:participantId/confirm",
-    element: <TripConfirmParticipant />,
-    errorElement: <ErrorPage />
+    element: <TripConfirmParticipant />
   }
 ]);
 
