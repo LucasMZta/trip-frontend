@@ -52,7 +52,7 @@ export const Guests = () => {
                await api.post(`/trips/${tripId}/invites`, {
                   email: email
                })
-
+               window.location.reload();
             } catch (error) {
                console.log(error);
                setPostError(true)
@@ -60,7 +60,6 @@ export const Guests = () => {
          })
          if (!postError) {
             setPostError(false)
-            // window.location.reload();
          }
       }
 
