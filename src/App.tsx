@@ -7,12 +7,12 @@ import { TripConfirmParticipant } from "./pages/trip-details/confirm-participant
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <TripDetailsPage />,
+    element: <CreateTripPage />,
     errorElement: <ErrorPage />
   },
   {
     path: "/trips/:tripId",
-    element: <CreateTripPage />,
+    element: <TripDetailsPage />,
     errorElement: <ErrorPage />
   },
   {
