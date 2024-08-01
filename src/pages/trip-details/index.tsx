@@ -9,6 +9,8 @@ import { Button } from "../../components/button";
 
 export const TripDetailsPage = () => {
 
+   // ROUTE: /trips/:tripId 
+
    const currentWidth = window.innerWidth;
 
    const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false);

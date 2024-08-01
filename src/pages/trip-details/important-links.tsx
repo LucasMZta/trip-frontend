@@ -37,7 +37,7 @@ export const ImportantLinks = () => {
 						<div className="flex items-center justify-between">
 							<div className="space-y-1.5">
 								<span className="block font-medium text-zinc-100">{link.title}</span>
-								<a href="#" className="block font-xs text-zinc-400 truncate hover:text-zinc-200">{link.url}</a>
+								<a href={link.url} target="_blank" className="block font-xs text-zinc-400 truncate hover:text-zinc-200">{link.url}</a>
 							</div>
 							<Link2 className="text-zinc-400 size 5 flex-shrink-0" />
 						</div>
