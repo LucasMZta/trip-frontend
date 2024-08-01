@@ -7,12 +7,12 @@ import { TripConfirmParticipant } from "./pages/trip-details/confirm-participant
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <CreateTripPage />,
+    element: <TripDetailsPage />,
     errorElement: <ErrorPage />
   },
   {
     path: "/trips/:tripId",
-    element: <TripDetailsPage />,
+    element: <CreateTripPage />,
   },
   {
     path: "/participants/:participantId/confirm",
@@ -21,7 +21,6 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
-  console.log(router);
   return <RouterProvider router={router} />
 
 }
