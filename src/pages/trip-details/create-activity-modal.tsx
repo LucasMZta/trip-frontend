@@ -12,7 +12,7 @@ type Props = {
 
 export const CreateActivityModal = ({ closeCreateActivityModal }: Props) => {
    const { tripId } = useParams();
-   const [errorOccursAt, setErrorOccursAt] = useState('');
+   const [errorOccursAt, setErrorOccursAt] = useState<string[]>([]);
 
 
    const createActivity = async (e: FormEvent<HTMLFormElement>) => {
@@ -30,11 +30,12 @@ export const CreateActivityModal = ({ closeCreateActivityModal }: Props) => {
          })
          window.location.reload();
       } catch (error) {
+         setErrorOccursAt([]);
          if (error instanceof AxiosError) {
-            if (error.response?.data.errors.title) {
-               setErrorOccursAt(error.response?.data.errors.title)
+            if (error.response?.data.errors) {
+               setErrorOccursAt([error.response?.data.errors.title, error.response?.data.errors.occurs_at])
             } else {
-               setErrorOccursAt(error.response?.data.message)
+               setErrorOccursAt([error.response?.data.message])
             }
          }
       }
@@ -72,8 +73,11 @@ export const CreateActivityModal = ({ closeCreateActivityModal }: Props) => {
                         className="bg-transparent text-lg placeholder-zinc-400  outline-none flex-1 " />
                   </div>
                </div>
-               {errorOccursAt &&
-                  <div className='bg-red-400/70 text-red-950 rounded-md p-2'>{errorOccursAt}</div>
+               {errorOccursAt.length > 0 &&
+                  errorOccursAt.map((error, key) => (
+                     error != undefined &&
+                     <div key={key} className='bg-red-400/70 text-red-950 rounded-md p-2'>{error}</div>
+                  ))
                }
                <Button variantColor="primary" size="full" >
                   Salvar Atividade

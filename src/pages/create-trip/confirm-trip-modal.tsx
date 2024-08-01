@@ -72,8 +72,6 @@ export const ConfirmTripModal = ({ closeConfirmTripModal, createTrip, setOwnerEm
                   {isLoading ? 'Loading...' : 'Confirmar criação da viagem'}
                </Button>
             </form>
-
-
          </div>
       </Modal>
    )

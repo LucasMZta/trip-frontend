@@ -31,6 +31,7 @@ export const DestinationAndDateStep = ({ closeGuestInput, setDestination, isGues
       setIsDatePickerOpen(true);
    }
    const closeDatePicker = () => {
+      console.log(eventStartAndEndDates?.from, eventStartAndEndDates?.to)
       setIsDatePickerOpen(false);
    }
 
