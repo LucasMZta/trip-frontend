@@ -40,7 +40,7 @@ export const Activities = () => {
                      {day.activities.map(activity => (
                         <div key={activity.id} className="px-4 py-2.5 bg-zinc-900 rounded-xl shadow-shape flex items-center gap-3">
                            <CircleCheck className="size-5 text-lime-300" />
-                           <span className="text-zinc-100">{activity.title}</span>
+                           <span className="text-zinc-100 flex-1">{activity.title}</span>
                            <span className="text-zinc-400 text-sm ml-auto">{format(activity.occurs_at, 'HH:mm')}h</span>
                            <Trash2 className="size-5 text-zinc-300 cursor-pointer" onClick={deleteActivity} />
                         </div>
